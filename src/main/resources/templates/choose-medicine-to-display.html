@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title>Choose Medicine to Assign</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-image: url('https://wallpaperaccess.com/full/4112935.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#"> DISPLAY PATIENT'S MEDICINES  </a>
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:href="@{/}">Main Menu</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+
+            <table class="table table-striped table-responsive-md">
+                <thead>
+                <tr>
+                    <th>Patient Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Display Medicine</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="patient : ${patients}">
+                    <td th:text="${patient.patientId}"></td>
+                    <td th:text="${patient.fname}"></td>
+                    <td th:text="${patient.lname}"></td>
+                    <td><a th:href="@{/patient/display/{id}(id=${patient.patientId})}"
+                           class="btn btn-primary"><i class="fas fa-user-secret"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

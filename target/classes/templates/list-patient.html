@@ -1,0 +1,104 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List All Patient</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701451142.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .empty-message {
+            text-align: center;
+            font-style: italic;
+            color: #999999;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #003399;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#"> PATIENT LIST  </a>
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:href="@{/}">Main Menu</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h2>List Patient</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Patient Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Sickness</th>
+            <th>Hospital Department Id</th>
+            <th>Hospital Department Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${patients.empty}">
+            <td colspan="6" class="empty-message">No Patients Available</td>
+        </tr>
+        <tr th:each="patient : ${patients}">
+            <td><span th:text="${patient.patientId}"></span></td>
+            <td><span th:text="${patient.fname}"></span></td>
+            <td><span th:text="${patient.lname}"></span></td>
+            <td><span th:text="${patient.sickness}"></span></td>
+            <td><span th:text="${patient.hospitalDepartment?.hospDeptId}"></span></td>
+            <td><span th:text="${patient.hospitalDepartment?.hospDeptName}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="#" class="back-link" th:href="@{/}">Back to Main Menu</a>
+</div>
+</body>
+</html>
