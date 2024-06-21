@@ -36,6 +36,7 @@ INSERT INTO users(email, name, password) VALUES
     ('admin@gmail.com','admin','$2a$12$JGriZzgFwZNEeuIzFcocjug9wb0/G0EJ1nco27FZoCvVLmfpfiiWe');
 INSERT INTO users(email, name, password) VALUES
     ('staff@gmail.com','John','$2a$12$F2QRPx07EsQTswGmyxB4sOw7RLCnIDqux/LWhO5vfegs42OS2LE.C');
+insert into users(email, name, password) values ('dummy@example.com', 'Dummy', 'Worldw@r3');
 
 
 INSERT INTO roles(name) VALUES ('ROLE_ADMIN');
