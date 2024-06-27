@@ -1,4 +1,5 @@
 package com.csc3402.lab.Project.controller;
+
 import com.csc3402.lab.Project.dto.UserDto;
 import com.csc3402.lab.Project.model.User;
 import com.csc3402.lab.Project.repository.MedicineRepository;
@@ -50,7 +51,8 @@ public class ProjectController {
         return "add-patient";
     }
 
-    @RequestMapping("*")
+    // Explicitly specify GET method for fallback handler
+    @GetMapping("*")
     public String fallbackHandler() {
         return "error";
     }
@@ -116,11 +118,8 @@ public class ProjectController {
         return "choose-medicine-to-assign";
     }
 
-
-
     @GetMapping("assign/{id}")
-    public String showAssignMedicineForm(@PathVariable("id") long id, @Valid PatientMedicine
-            patientMedicine, Model model) {
+    public String showAssignMedicineForm(@PathVariable("id") long id, @Valid PatientMedicine patientMedicine, Model model) {
         Patient patient = patientRepository.findById((int) id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid patient Id:" + id));
         model.addAttribute("patient", patient);
@@ -128,7 +127,6 @@ public class ProjectController {
 
         return "assign-medicine";
     }
-
 
     @PostMapping("patientmedicine/{patientid}")
     public String updatePatientMedicine(@PathVariable("patientid") long id1, @Valid Medicine medi, @RequestParam String startDate,
@@ -154,6 +152,7 @@ public class ProjectController {
         model.addAttribute("user", user);
         return "registration";
     }
+
     @PostMapping("/registration")
     public String registration (
             @Valid @ModelAttribute("user") UserDto userDto,
@@ -172,10 +171,4 @@ public class ProjectController {
         userService.saveUser(userDto);
         return "redirect:/registration?success";
     }
-
-
-
-
-
-
 }
